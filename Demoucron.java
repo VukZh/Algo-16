@@ -24,6 +24,21 @@ public class Demoucron {
         checkVertex = 0;
     }
 
+    Demoucron(int size) {
+
+        G = new DArray<>();
+        DArray<Integer> tmp = new DArray<>();
+        tmp.add(0, -1);
+        for (int i = 0; i < size; i++) {
+            G.add(i, tmp);
+        }
+        M = new DArray<>();
+        F = new DArray<>();
+        level = new DArray<>();
+        Iteration = 0;
+        checkVertex = 0;
+    }
+
     public void set(int g_i, int el_i, int r) { // установка для матрицы вектора смежности (g_i - вершина, el_i индекс массива вершин куда уходят ребра, r - вершины на которые можно уйти с g_i)
         DArray<Integer> tmp;
         if (el_i == 0) {
@@ -33,6 +48,14 @@ public class Demoucron {
         }
         tmp.add(el_i, r);
         G.add(g_i, tmp);
+    }
+
+    public void setArr(int v, int[] arr) { // 
+        int g_i = v;
+        int sizeArr = arr.length;
+        for (int el_i = 0; el_i < sizeArr; el_i++) {
+            set(g_i, el_i, arr[el_i]);
+        }
     }
 
     private void setL(int lvl, int v, int r) { // установка для матрицы вектора смежности (g_i - вершина, el_i индекс массива вершин куда уходят ребра, r - вершины на которые можно уйти с g_i)
@@ -189,11 +212,10 @@ public class Demoucron {
     public void demoucron() {
         createMatrix();
         while (checkVertex < sizeV()) { // пока не проверены все вершины - проверяем вершины с 0 входов
-            
+
 //            System.out.println("...........................");   ////////////////////  вывод матрицы в каждом уровне        
 //            System.out.println("Iteration " + Iteration);    ////////////////////////            
 //            displayMatrix(); ////////////////// 
-            
             int step = 0;
             for (int i = 0; i < sizeV(); i++) {
                 if (!F.get(i) && findCol0(i)) {
@@ -201,9 +223,8 @@ public class Demoucron {
                     step++;
                 }
             }
-            
+
 //            FindV();   ////////////////// вывод найденных вершин после каждой итерации
-            
             checkVertex += step;
             for (int i = 0; i < sizeL(Iteration); i++) {
                 delRow(getL(Iteration, i));

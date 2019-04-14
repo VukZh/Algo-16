@@ -3,23 +3,16 @@ package demoucronapp;
 public class DemoucronApp {
 
     public static void main(String[] args) {
-        Demoucron G = new Demoucron();
+        Demoucron G = new Demoucron(12);
 
-        G.set(0, 0, -1); // ввод графа (небезопасный метод - вершины с 0, связи с 0, без проверки связей на несуществующие вершины; -1 - нет исходящих ребер)
-        G.set(1, 0, -1);
-        G.set(2, 0, 0);
-        G.set(2, 1, 7);
-        G.set(2, 2, 10);
-        G.set(3, 0, 6);
-        G.set(4, 0, 3);
-        G.set(5, 0, 1);
-        G.set(6, 0, 11);
-        G.set(7, 0, 6);
-        G.set(8, 0, 2);
-        G.set(8, 1, 9);
-        G.set(9, 0, -1);
-        G.set(10, 0, 11);
-        G.set(11, 0, -1);
+        G.setArr(2, new int[]{0, 7, 10});
+        G.setArr(3, new int[]{6});
+        G.setArr(4, new int[]{3});
+        G.setArr(5, new int[]{1});
+        G.setArr(6, new int[]{11});
+        G.setArr(7, new int[]{6});
+        G.setArr(8, new int[]{2, 9});
+        G.setArr(10, new int[]{11});
 
         G.displayGraph(); // вывод графа      
 
