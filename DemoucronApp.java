@@ -3,21 +3,33 @@ package demoucronapp;
 public class DemoucronApp {
 
     public static void main(String[] args) {
-        Demoucron G = new Demoucron(12);
+        int[][] a1 = {
+            {},
+            {},
+            {0, 7, 10},
+            {6},
+            {3},
+            {1},
+            {11},
+            {6},
+            {2, 9},
+            {},
+            {11},
+            {},
+        };
+        
+        Demoucron G = new Demoucron(a1);
 
-        G.setArr(2, new int[]{0, 7, 10});
-        G.setArr(3, new int[]{6});
-        G.setArr(4, new int[]{3});
-        G.setArr(5, new int[]{1});
-        G.setArr(6, new int[]{11});
-        G.setArr(7, new int[]{6});
-        G.setArr(8, new int[]{2, 9});
-        G.setArr(10, new int[]{11});
+//        G.displayMatrix();
+        int[][] res = G.demoucron(); // вычисляем и выводим
 
-        G.displayGraph(); // вывод графа      
-
-        G.demoucron(); // вычисляем
-        G.displayLevel(); // вывод вершин по уровням
-
+        for (int i = 0; i < res.length; i++) {
+            System.out.print("Level " + i + ":");
+            for (int j = 0; j < res[i].length; j++) {
+                System.out.print(" " + res[i][j]);
+            }
+            System.out.println("");
+        }
+        System.out.println("");
     }
 }
